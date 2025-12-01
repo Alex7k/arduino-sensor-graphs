@@ -1,0 +1,39 @@
+services:
+  exporter:
+    build: ./exporter
+    container_name: arduino_exporter
+    devices:
+      - "/dev/ttyACM0:/dev/ttyACM0" # forward arduino
+    ports:
+      - "9100:9100"
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus
+    container_name: arduino_prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana
+    container_name: arduino_grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    restart: unless-stopped
+
+networks:
+  default:
+    name: arduino-net
+
+volumes:
+  prometheus-data:
+  grafana-data:
+

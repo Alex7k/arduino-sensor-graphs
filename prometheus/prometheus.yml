@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 1s
+
+scrape_configs:
+  - job_name: "arduino_air_quality"
+    static_configs:
+      - targets: ["exporter:9100"]
+
