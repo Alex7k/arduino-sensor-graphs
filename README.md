@@ -1,6 +1,7 @@
 # Arduino-attached Sensors (Temperature/Humidity + TVOC/eCO2) + Prometheus + Grafana
 
 ![Photo of example setup](img/photo.jpg)
+![Screenshot of Grafana graphs](img/graphs.jpg)
 
 ## Introduction
 
