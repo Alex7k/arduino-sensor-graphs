@@ -1,7 +1,7 @@
 import serial
 from flask import Flask, Response
 
-PORT = "/dev/ttyACM0"
+PORT = "/dev/arduino"
 BAUD = 115200
 
 ser = serial.Serial(PORT, BAUD, timeout=2)

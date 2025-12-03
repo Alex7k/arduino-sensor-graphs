@@ -3,7 +3,7 @@ services:
     build: ./exporter
     container_name: arduino_exporter
     devices:
-      - "/dev/ttyACM0:/dev/ttyACM0" # forward arduino
+      - "/dev/ttyACM0:/dev/arduino" # forward arduino, you may need to change the number after 'ttyACM'
     ports:
       - "9100:9100"
     restart: unless-stopped
@@ -12,7 +12,7 @@ services:
     image: prom/prometheus
     container_name: arduino_prometheus
     volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus
     ports:
       - "9090:9090"
